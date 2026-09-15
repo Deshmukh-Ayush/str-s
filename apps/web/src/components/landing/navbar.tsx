@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { Container } from "./container";
+import { StrLogo } from "@/components/str-logo";
 import type { SVGProps } from "react";
 
 export function LandingNavbar() {
   return (
     <header className="sticky top-0 z-50 bg-fd-background/80 backdrop-blur-md">
       <Container className="flex h-14 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 font-mono font-semibold tracking-tight text-fd-foreground hover:opacity-80 transition-opacity">
-          <span className="rounded bg-fd-foreground px-1.5 py-0.5 text-xs font-bold text-fd-background">STR</span>
+        <Link href="/" className="flex items-center gap-2.5 font-mono font-semibold tracking-tight text-fd-foreground hover:opacity-80 transition-opacity">
+          <StrLogo size={24} priority />
           <span className="text-sm">str-s</span>
         </Link>
         <nav className="flex items-center gap-5 text-xs sm:text-sm font-medium text-fd-muted-foreground">

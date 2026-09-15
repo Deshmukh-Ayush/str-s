@@ -3,6 +3,7 @@ import { Container } from "@/components/landing/container";
 import { LiveDemo } from "@/components/landing/live-demo";
 import { BenchmarksTable } from "@/components/landing/benchmarks-table";
 import { CopyableSnippet } from "@/components/landing/install-snippet";
+import { StrLogo } from "@/components/str-logo";
 import type { SVGProps } from "react";
 
 
@@ -12,13 +13,16 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <section className="flex flex-col gap-6">
         <Container className="flex flex-col gap-5">
-          <div className="flex items-center gap-2 text-xs font-mono text-fd-muted-foreground">
-            <span>npm package:</span>
-            <code className="rounded border border-fd-border/70 bg-fd-muted/50 px-1.5 py-0.5 text-fd-foreground font-semibold">
-              str-s
-            </code>
-            <span>•</span>
-            <span>v0.1.0</span>
+          <div className="flex items-center gap-3">
+            <StrLogo size={40} className="rounded-xl shadow-xs" priority />
+            <div className="flex items-center gap-2 text-xs font-mono text-fd-muted-foreground">
+              <span>npm package:</span>
+              <code className="rounded border border-fd-border/70 bg-fd-muted/50 px-1.5 py-0.5 text-fd-foreground font-semibold">
+                str-s
+              </code>
+              <span>•</span>
+              <span>v0.1.0</span>
+            </div>
           </div>
 
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-fd-foreground leading-tight">
@@ -155,7 +159,10 @@ export default function HomePage() {
 
             <div className="rounded-lg border border-fd-border bg-fd-card p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <span className="font-medium text-sm text-fd-foreground">Core Library</span>
+                <span className="font-medium text-sm text-fd-foreground flex items-center">
+                  <StrLogo size={16} className="mr-1.5 size-4 rounded-xs inline-block" />
+                  Core Library
+                </span>
                 <span className="font-mono text-[11px] text-fd-muted-foreground">str-s (npm)</span>
               </div>
               <p className="text-xs text-fd-muted-foreground leading-relaxed">
@@ -182,7 +189,10 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <span className="text-xs font-medium text-fd-foreground">Install npm package:</span>
+            <span className="text-xs font-medium text-fd-foreground flex items-center gap-1.5">
+              <StrLogo size={14} className="size-3.5 rounded-xs" />
+              Install npm package:
+            </span>
             <CopyableSnippet code="pnpm add str-s" />
           </div>
 

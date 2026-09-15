@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   description:
     'The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons with zero runtime dependencies.',
   authors: [{ name: '@everywhereayush', url: 'https://x.com/everywhereayush' }],
+  icons: {
+    icon: '/str-logo.svg',
+    shortcut: '/str-logo.svg',
+    apple: '/str-logo.png',
+  },
 };
 
 export default function Layout({ children }: LayoutProps<'/'>) {

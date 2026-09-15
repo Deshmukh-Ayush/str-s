@@ -1,6 +1,7 @@
 import * as React from "react";
 // Data sourced directly from verified packages/core/bench/run-bench.js output across real icon fixtures
 import benchmarkData from "@/data/benchmarks.json";
+import { StrLogo } from "@/components/str-logo";
 
 export function BenchmarksTable() {
   return (
@@ -27,12 +28,17 @@ export function BenchmarksTable() {
                 }
               >
                 <td className="py-2.5 px-3 whitespace-nowrap text-fd-foreground font-sans">
-                  {row.name}
-                  {row.isHighlight && (
-                    <span className="ml-1.5 rounded bg-fd-primary/15 text-fd-primary px-1.5 py-0.2 text-[10px] font-mono">
-                      fastest
-                    </span>
-                  )}
+                  <span className="inline-flex items-center">
+                    {row.isHighlight && (
+                      <StrLogo size={14} className="mr-1.5 size-3.5 rounded-xs shrink-0" />
+                    )}
+                    <span>{row.name}</span>
+                    {row.isHighlight && (
+                      <span className="ml-1.5 rounded bg-fd-primary/15 text-fd-primary px-1.5 py-0.2 text-[10px] font-mono">
+                        fastest
+                      </span>
+                    )}
+                  </span>
                 </td>
                 <td className="py-2.5 px-3 whitespace-nowrap">{row.opsPerSec} ops/s</td>
                 <td className="py-2.5 px-3 whitespace-nowrap">{row.latencyPerIcon}</td>

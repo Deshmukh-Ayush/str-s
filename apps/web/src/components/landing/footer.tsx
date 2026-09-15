@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { Container } from "./container";
+import { StrLogo } from "@/components/str-logo";
 
 export function LandingFooter() {
   return (
     <footer className="border-t border-fd-border/50 py-12 text-xs text-fd-muted-foreground">
       <Container className="flex flex-col gap-8">
         <div className="flex flex-col sm:flex-row justify-between gap-6">
-          <div className="flex flex-col gap-2 max-w-xs">
-            <span className="font-mono font-semibold text-fd-foreground">STR (str-s)</span>
+          <div className="flex flex-col gap-2.5 max-w-xs">
+            <Link href="/" className="flex items-center gap-2 font-mono font-semibold text-fd-foreground hover:opacity-80 transition-opacity">
+              <StrLogo size={20} />
+              <span>STR (str-s)</span>
+            </Link>
             <p className="leading-relaxed">
               The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons with zero runtime dependencies.
             </p>
