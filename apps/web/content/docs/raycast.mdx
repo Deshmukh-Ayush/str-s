@@ -1,0 +1,38 @@
+---
+title: Raycast Extension
+description: Convert SVGs to React components directly from your macOS clipboard with global hotkeys
+---
+
+# Raycast Extension
+
+The STR Raycast extension allows macOS users to convert SVGs from any app or clipboard with a single keystroke.
+
+## Commands
+
+### 1. Convert SVG from Clipboard
+Reads the current SVG string from the system clipboard, runs `convert()`, copies the generated React component back to the clipboard, and triggers a confirmation toast with the component name.
+
+### 2. Convert SVG from Selected Text
+Reads highlighted text in the frontmost application window (Figma, browser DevTools, or text editor) and converts it to a React component. Falls back to clipboard content if no active selection is detected.
+
+---
+
+## Installation
+
+Install directly via the Raycast Store or build from source:
+
+```bash
+cd packages/raycast-extension
+pnpm build
+```
+
+---
+
+## Native Preferences
+
+Adjust conversion options in Raycast's extension preferences:
+
+- **Component Name**: Custom component name (default: `SvgComponent`).
+- **Tailwind Mapping**: Choose between `loose`, `strict`, or `off`.
+- **Component Style**: Choose between `arrow` function or `function` declaration.
+- **TypeScript**: Toggle `React.SVGProps` TypeScript definitions.

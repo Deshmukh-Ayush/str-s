@@ -1,0 +1,103 @@
+---
+title: API Reference
+description: Complete API reference for str-s, ConvertOptions, and helper functions
+---
+
+# API Reference
+
+The `str-s` core package provides two primary functions and a configuration interface.
+
+## `convert()`
+
+Converts an SVG string into a React component string.
+
+```ts
+function convert(svg: string, options?: ConvertOptions): string;
+```
+
+### Parameters
+
+- `svg` (`string`): The raw SVG markup to parse and convert.
+- `options` (`ConvertOptions`, optional): Configuration object controlling the component style, typing, and Tailwind class generation.
+
+### Return Value
+
+Returns the formatted React component string. If the input is not a convertible SVG or contains completely unparseable syntax, `convert()` fails gracefully and returns an empty string (`""`). It never throws uncaught exceptions.
+
+---
+
+## `isConvertibleSvg()`
+
+Fast pre-check that verifies whether an input string looks like a valid, convertible SVG.
+
+```ts
+function isConvertibleSvg(input: string): boolean;
+```
+
+### Parameters
+
+- `input` (`string`): Any text string to test (clipboard content, paste event text, or file content).
+
+### Return Value
+
+Returns `true` if the string contains both an opening `<svg` tag and a closing `</svg>` or `/>` tag. Returns `false` in less than 0.01 ms for non-SVGs, plain text, or standard HTML.
+
+---
+
+## `ConvertOptions`
+
+```ts
+export interface ConvertOptions {
+  /**
+   * Component name for the exported React component.
+   * @default "SvgComponent"
+   */
+  componentName?: string;
+
+  /**
+   * Whether to output TypeScript definitions with React.SVGProps<SVGSVGElement>.
+   * If false, outputs plain JSX.
+   * @default true
+   */
+  typescript?: boolean;
+
+  /**
+   * Tailwind class mapping mode.
+   * - "strict": Only emit standard Tailwind scale classes (e.g. width="24" -> w-6). Non-matching attributes are kept as raw attributes.
+   * - "loose": Fall back to arbitrary-value syntax (e.g. width="13" -> w-[13px], fill="#3b82f6" -> fill-[#3b82f6]).
+   * - "off": Disable Tailwind mapping entirely. Preserves raw attributes and converts inline styles to React style={{}} objects.
+   * @default "loose"
+   */
+  tailwindMapping?: "strict" | "loose" | "off";
+
+  /**
+   * Component definition style.
+   * - "arrow": export const Name = (props) => (...)
+   * - "function": export function Name(props) { return (...); }
+   * @default "arrow"
+   */
+  componentStyle?: "arrow" | "function";
+}
+```
+
+---
+
+## Tailwind Mapping Modes
+
+### `loose` (Default)
+Translates both exact spacing scale dimensions and arbitrary dimensions:
+- `width="24" height="24"` → `className="w-6 h-6"`
+- `width="13" height="27px"` → `className="w-[13px] h-[27px]"`
+- `fill="currentColor"` → `className="fill-current"`
+- `fill="#3b82f6"` → `className="fill-[#3b82f6]"`
+- `stroke-width="2"` → `className="stroke-2"`
+
+### `strict`
+Only maps values that match Tailwind's standard default spacing and color scales:
+- `width="24"` → `className="w-6"`
+- `width="13"` → preserves raw `width="13"` attribute without arbitrary brackets.
+
+### `off`
+Does not generate any Tailwind utility classes:
+- Preserves raw `width` and `height` attributes.
+- Converts inline `style="..."` strings into React JSX `style={{ ... }}` objects.

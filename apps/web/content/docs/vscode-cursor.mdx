@@ -1,0 +1,56 @@
+---
+title: VS Code & Cursor Extension
+description: Automatic SVG to React conversion on paste for VS Code, Cursor, Windsurf, and VSCodium
+---
+
+# VS Code & Cursor Extension
+
+The STR editor extension automatically converts pasted SVGs into clean React components with Tailwind classes directly inside `.tsx`, `.jsx`, `.ts`, and `.js` files.
+
+## Key Features
+
+- **Instant Paste Interception**: Uses standard `DocumentPasteEditProvider` to intercept SVG markup and convert it on the fly.
+- **Fast Pre-Check Bailout**: Evaluates `isConvertibleSvg()` in under 0.01 ms. Non-SVG text, code snippets, and plain text pastes are completely ignored and untouched.
+- **Single Undo Step**: All edits are bundled in one undo transaction. Pressing `Cmd+Z` or `Ctrl+Z` immediately reverts the converted component back to the raw SVG in exactly one step.
+- **Compatible Everywhere**: Uses strictly standard VS Code APIs. Compatible with **VS Code**, **Cursor**, **Windsurf**, and **VSCodium**.
+
+---
+
+## Installation
+
+### From VS Code Marketplace
+In VS Code, search for **STR** or run:
+```bash
+code --install-extension str-tools.str-vscode
+```
+
+### From OpenVSX (Cursor, Windsurf, VSCodium)
+Cursor and VSCodium fetch extensions from [OpenVSX](https://open-vsx.org):
+```bash
+cursor --install-extension str-tools.str-vscode
+```
+
+---
+
+## Commands
+
+Access these commands from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`):
+
+1. **`STR: Convert Selection`**:
+   Converts highlighted SVG markup into a React component in place.
+2. **`STR: Convert Clipboard`**:
+   Reads SVG markup from your system clipboard, converts it, and either inserts it at the active editor cursor or copies the React component back to your clipboard.
+
+---
+
+## Extension Settings
+
+Customize conversion behavior in your VS Code / Cursor settings (`settings.json`):
+
+| Setting | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `str.autoConvertOnPaste` | `boolean` | `true` | Automatically convert SVG to React when pasting into JSX/TSX. |
+| `str.tailwindMapping` | `"strict" \| "loose" \| "off"` | `"loose"` | Tailwind utility class mapping mode. |
+| `str.componentStyle` | `"arrow" \| "function"` | `"arrow"` | Component declaration syntax. |
+| `str.typescript` | `boolean` | `true` | Include `React.SVGProps<SVGSVGElement>` types. |
+| `str.componentName` | `string` | `"SvgComponent"` | Default exported component name. |

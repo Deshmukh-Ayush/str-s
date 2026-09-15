@@ -1,0 +1,70 @@
+---
+title: Getting Started
+description: Install STR (str-s) and convert your first SVG to React with Tailwind CSS
+---
+
+# Getting Started with STR
+
+STR (`str-s`) is the smallest and fastest SVG to React + Tailwind converter, purpose-built for icons and simple graphics. With **zero runtime dependencies** and a gzipped bundle of just **3.1 kB**, it converts SVG strings into clean, typed React components with Tailwind utility classes in under 0.03 milliseconds.
+
+## Installation
+
+Install `str-s` using your preferred package manager:
+
+```bash
+pnpm add str-s
+# or
+npm install str-s
+# or
+yarn add str-s
+```
+
+## First Conversion
+
+Import `convert` and pass an SVG string:
+
+```tsx
+import { convert } from "str-s";
+
+const svg = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <path d="M5 12h14M12 5l7 7-7 7"/>
+</svg>`;
+
+const reactCode = convert(svg, {
+  componentName: "ArrowRightIcon",
+  tailwindMapping: "loose",
+  typescript: true,
+  componentStyle: "arrow",
+});
+
+console.log(reactCode);
+```
+
+### Generated Output
+
+```tsx
+import * as React from "react";
+
+export const ArrowRightIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-current stroke-2" fill="none" {...props}>
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+);
+```
+
+## When to use STR vs SVGR
+
+| Feature | STR (`str-s`) | SVGR |
+| :--- | :--- | :--- |
+| **Primary Use Case** | Icons and simple graphics | Heavy illustrations, embedded rasters, complex filters |
+| **Speed** | **>9,600 ops/s (0.024 ms/icon)** | ~110 ops/s (2.09 ms/icon) |
+| **Dependencies** | **0 (zero)** | 58+ (Babel parser, traverse, generator) |
+| **Bundle Size** | **3.1 kB gzip** | ~1.2 MB |
+| **Tailwind Class Mapping** | Built-in (`strict`, `loose`, `off`) | Requires external plugins |
+
+## Next Steps
+
+- Explore the [API Reference](/docs/api-reference) for detailed option types.
+- Set up the [VS Code & Cursor Extension](/docs/vscode-cursor) for auto-conversion on paste.
+- Configure the [MCP Server](/docs/mcp-server) for AI coding agents.
+- Review verified [Benchmarks](/docs/benchmarks).

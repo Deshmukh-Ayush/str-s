@@ -1,0 +1,34 @@
+[
+  {
+    "name": "str-s (STR)",
+    "opsPerSec": "9,654",
+    "latencyPerIcon": "0.024 ms",
+    "dependencies": "0 (zero)",
+    "bundleSizeGzip": "3.1 kB",
+    "isHighlight": true
+  },
+  {
+    "name": "@svgr/core",
+    "opsPerSec": "110",
+    "latencyPerIcon": "2.09 ms",
+    "dependencies": "58+ (Babel + AST)",
+    "bundleSizeGzip": "~1.2 MB",
+    "isHighlight": false
+  },
+  {
+    "name": "svg-to-jsx",
+    "opsPerSec": "1,116",
+    "latencyPerIcon": "0.24 ms",
+    "dependencies": "3",
+    "bundleSizeGzip": "~15 kB",
+    "isHighlight": false
+  },
+  {
+    "name": "svg-to-react-cli",
+    "opsPerSec": "544",
+    "latencyPerIcon": "0.41 ms",
+    "dependencies": "4+ (jsdom + htmltojsx)",
+    "bundleSizeGzip": ">5 MB",
+    "isHighlight": false
+  }
+]

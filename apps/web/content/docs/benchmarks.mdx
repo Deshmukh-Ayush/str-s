@@ -1,0 +1,49 @@
+---
+title: Verified Benchmarks
+description: In-depth performance benchmarks comparing STR against SVGR, svg-to-jsx, and svg-to-react-cli
+---
+
+# Performance Benchmarks
+
+STR is designed from the ground up to be the fastest and smallest SVG to React converter for icons and simple graphics. This document details the benchmark methodology and audit trail.
+
+## Methodology
+
+- **Benchmark Harness**: [`tinybench`](https://github.com/tinylibs/tinybench) (v3.1.1) on Node.js v24.
+- **Warmup Iterations**: 10 warmup iterations over 500 ms executed prior to measurement. Warmup cycles are excluded from throughput and latency calculations.
+- **Fixture Set**: 5 representative real-world icon fixtures tested per batch:
+  1. `feather-heart.svg` (multi-curve path)
+  2. `feather-check.svg` (polyline)
+  3. `heroicon-outline-bell.svg` (complex path with opacity and stroke attributes)
+  4. `lucide-arrow-right.svg` (standard icon with class attribute)
+  5. `figma-complex-shapes.svg` (multiple circles, paths, opacity, and transforms)
+
+---
+
+## Results Summary
+
+| Tool | Throughput (batch of 5) | Latency (avg per icon) | Runtime Dependencies | Bundle Size (gzip) |
+| :--- | :--- | :--- | :--- | :--- |
+| **`str-s` (STR)** | **9,654 ops/s** | **0.024 ms** (24 µs) | **0 (zero)** | **3.1 kB** |
+| **`@svgr/core`** | 110 ops/s | 2.09 ms | 58+ (Babel + AST) | ~1.2 MB |
+| **`svg-to-jsx`** | 1,116 ops/s | 0.24 ms | 3 | ~15 kB |
+| **`svg-to-react-cli`** | 544 ops/s | 0.41 ms | 4+ (jsdom + htmltojsx) | >5 MB |
+
+---
+
+## Why is STR so much faster?
+
+### 1. Zero Babel Overhead
+`@svgr/core` relies on the full Babel toolchain:
+- Parses SVG strings into an XML AST.
+- Converts the XML AST into a Babel AST (`@babel/parser`).
+- Runs multiple Babel plugin passes (`@babel/traverse`) to rename attributes.
+- Generates JSX code with `@babel/generator`.
+
+STR eliminates the AST intermediate representation entirely. It walks the SVG string once using a lightweight tokenizer and builds JSX with direct string concatenation.
+
+### 2. Zero Runtime Dependencies
+STR ships **zero** runtime dependencies. Its minified, gzipped bundle footprint is **3.1 kB**, compared to over **1.2 MB** for `@svgr/core` with Babel plugins.
+
+### 3. Purpose-Built for Icons
+Full XML parsers and SVGO optimize for every possible SVG edge case (filters, font definitions, raster images). STR focuses on the 95% use case: icons, logos, and UI vectors.

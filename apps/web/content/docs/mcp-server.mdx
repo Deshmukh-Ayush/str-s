@@ -1,0 +1,68 @@
+---
+title: MCP Server (Model Context Protocol)
+description: Expose STR directly as an AI agent tool for Claude Code, Cursor, and Windsurf
+---
+
+# MCP Server
+
+STR exposes a Model Context Protocol (MCP) server (`str-s-mcp`) allowing AI coding assistants to convert SVG graphics into React + Tailwind components autonomously.
+
+## Tool Definition
+
+- **Tool Name**: `convert_svg_to_react`
+- **Description**: Converts an SVG string into a React component with Tailwind CSS classes.
+- **Parameters**:
+  - `svg` (`string`, required): The SVG string to convert.
+  - `options` (`object`, optional):
+    - `componentName` (`string`): React component name (default: `SvgComponent`).
+    - `typescript` (`boolean`): Whether to include TypeScript definitions (default: `true`).
+    - `tailwindMapping` (`"strict" | "loose" | "off"`): Tailwind class mapping strategy (default: `"loose"`).
+    - `componentStyle` (`"arrow" | "function"`): Arrow function or function declaration (default: `"arrow"`).
+
+---
+
+## Configuration
+
+### Claude Desktop
+Add the following block to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "str": {
+      "command": "npx",
+      "args": ["-y", "str-s-mcp"]
+    }
+  }
+}
+```
+
+### Claude Code
+Add to your Claude Code MCP settings:
+
+```bash
+claude mcp add str -- npx -y str-s-mcp
+```
+
+### Cursor Agent
+In Cursor Settings → Features → MCP, add a new server or configure `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "str": {
+      "command": "npx",
+      "args": ["-y", "str-s-mcp"]
+    }
+  }
+}
+```
+
+---
+
+## Verification
+
+When prompted with:
+> "Convert this SVG icon to a React component with Tailwind classes"
+
+The AI agent will detect `convert_svg_to_react` and invoke the tool directly over stdio, producing clean JSX without hallucinating attributes or missing classes.

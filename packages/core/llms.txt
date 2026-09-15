@@ -126,3 +126,10 @@ function handleClipboardPaste(pastedText: string) {
 | **Edge Functions, CLI, MCP Server, IDE Extensions** | **`str-s`** | Zero dependencies, starts instantly, no Babel runtime or Node DOM requirements. |
 | **Complex Illustrations with Embedded Bitmaps / Rasters** | **`SVGR`** | SVGR has Babel plugins and full DOM support for complex non-icon assets. |
 | **Heavy SVGO optimization pipelines** | **`SVGR`** | If you need multi-pass raster vectorization or full SVGO transform plugins. |
+
+## Documentation & AI Routes
+- **Interactive Documentation**: https://str-s.dev/docs (local `/docs`)
+- **Fumadocs LLM Route**: `/llms.txt` and `/llms-full.txt`
+- **GitHub Repository**: https://github.com/str-tools/str-s
+- **Creator**: [@everywhereayush](https://x.com/everywhereayush)
+
