@@ -5,8 +5,8 @@
   "scripts": {
     "build": "pnpm -r build",
     "test": "vitest run",
-    "bench": "pnpm --filter str-s bench",
-    "size": "pnpm --filter str-s size",
+    "bench": "pnpm --filter @everywhereayush/str-s bench",
+    "size": "pnpm --filter @everywhereayush/str-s size",
     "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { convert, isConvertibleSvg, type ConvertOptions } from "str-s";
+import { convert, isConvertibleSvg, type ConvertOptions } from "@everywhereayush/str-s";
 
 function getOptionsFromConfig(document?: vscode.TextDocument): ConvertOptions {
   const config = vscode.workspace.getConfiguration("str");

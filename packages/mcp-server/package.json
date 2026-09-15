@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.1",
-    "str-s": "workspace:*",
+    "@everywhereayush/str-s": "workspace:*",
     "zod": "^3.24.2"
   },
   "devDependencies": {

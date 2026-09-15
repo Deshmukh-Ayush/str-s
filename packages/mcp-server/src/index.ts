@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { convert, isConvertibleSvg } from "str-s";
+import { convert, isConvertibleSvg } from "@everywhereayush/str-s";
 
 export function createMcpServer(): McpServer {
   const server = new McpServer({

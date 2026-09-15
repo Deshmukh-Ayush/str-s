@@ -1,5 +1,5 @@
 {
-  "name": "str-s",
+  "name": "@everywhereayush/str-s",
   "version": "0.1.0",
   "description": "The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons.",
   "keywords": [

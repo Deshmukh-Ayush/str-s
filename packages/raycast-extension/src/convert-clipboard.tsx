@@ -1,5 +1,5 @@
 import { Clipboard, showToast, Toast, getPreferenceValues } from "@raycast/api";
-import { convert, isConvertibleSvg, type ConvertOptions } from "str-s";
+import { convert, isConvertibleSvg, type ConvertOptions } from "@everywhereayush/str-s";
 
 interface Preferences {
   componentName?: string;
