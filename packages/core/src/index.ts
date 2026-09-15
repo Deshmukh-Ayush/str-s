@@ -15,7 +15,7 @@ export { processTailwindAttributes, type TailwindMode } from "./tailwind.js";
  *
  * @example
  * ```ts
- * import { convert } from "str-s";
+ * import { convert } from "@everywhereayush/str-s";
  *
  * const svg = '<svg width="24" height="24" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>';
  * const reactCode = convert(svg, {

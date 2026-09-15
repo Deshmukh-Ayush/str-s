@@ -57,7 +57,7 @@ export default function HomePage() {
               Read documentation
             </Link>
             <div className="grow">
-              <CopyableSnippet code="pnpm add str-s" label="$" />
+              <CopyableSnippet code="pnpm add @everywhereayush/str-s" label="$" />
             </div>
           </div>
 
@@ -169,7 +169,7 @@ export default function HomePage() {
                 Dual CJS/ESM exports with zero runtime dependencies. Sub-millisecond synchronous conversion for Vite, Next.js, and scripts.
               </p>
               <div className="pt-1">
-                <CopyableSnippet code="pnpm add str-s" />
+                <CopyableSnippet code="pnpm add @everywhereayush/str-s" />
               </div>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function HomePage() {
               <StrLogo size={14} className="size-3.5 rounded-xs" />
               Install npm package:
             </span>
-            <CopyableSnippet code="pnpm add str-s" />
+            <CopyableSnippet code="pnpm add @everywhereayush/str-s" />
           </div>
 
           <div className="flex flex-col gap-3 pt-2">

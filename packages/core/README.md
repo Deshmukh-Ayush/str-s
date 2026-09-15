@@ -11,7 +11,7 @@ See full documentation and monorepo at [GitHub](https://github.com/str-tools/str
 ## Quick Start
 
 ```ts
-import { convert, isConvertibleSvg } from "str-s";
+import { convert, isConvertibleSvg } from "@everywhereayush/str-s";
 
 const svg = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
   <path d="M5 12h14M12 5l7 7-7 7"/>

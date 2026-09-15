@@ -56,7 +56,7 @@ export function isConvertibleSvg(input: string): boolean;
 
 ### Example 1: Standard Icon with Tailwind (TypeScript + Arrow Function)
 ```ts
-import { convert } from "str-s";
+import { convert } from "@everywhereayush/str-s";
 
 const svg = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
   <path d="M5 12h14" />
@@ -82,7 +82,7 @@ export const ArrowRight = (props: React.SVGProps<SVGSVGElement>) => (
 
 ### Example 2: Non-Tailwind Function Component (Plain JavaScript)
 ```ts
-import { convert } from "str-s";
+import { convert } from "@everywhereayush/str-s";
 
 const svg = `<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/></svg>`;
 
@@ -108,7 +108,7 @@ export function CircleIcon(props) {
 
 ### Example 3: Paste Pre-Check in Tooling
 ```ts
-import { isConvertibleSvg, convert } from "str-s";
+import { isConvertibleSvg, convert } from "@everywhereayush/str-s";
 
 function handleClipboardPaste(pastedText: string) {
   if (!isConvertibleSvg(pastedText)) {
