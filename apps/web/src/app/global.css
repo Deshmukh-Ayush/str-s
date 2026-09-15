@@ -10,3 +10,8 @@ html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
 }
+
+::selection {
+    background-color: oklch(0.703 0.16 239.5);
+    color: #f5f5f5;
+}
