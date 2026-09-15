@@ -67,6 +67,15 @@ export function emitJsxNode(node: SvgNode, indentLevel = 2, isRoot = false): str
     return `${indent}<${node.tag}${attrsString} />`;
   }
 
+  // Handle <style> tag specifically to avoid unescaped CSS braces in JSX
+  if (node.tag.toLowerCase() === "style") {
+    const cssText = node.children
+      .filter((c): c is string => typeof c === "string")
+      .join("\n")
+      .trim();
+    return `${indent}<style${attrsString}>{\`${cssText.replace(/`/g, "\\`")}\`}</style>`;
+  }
+
   // Render children
   const renderedChildren: string[] = [];
   for (const child of node.children) {

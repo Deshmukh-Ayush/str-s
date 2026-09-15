@@ -150,4 +150,64 @@ describe("STR Core (str-s)", () => {
       expect(result).toContain('className="custom-icon w-6 h-6"');
     });
   });
+
+  describe("Detailed Assertion Checks for Specific Fixtures", () => {
+    it("gradient-icon: converts linearGradient, defs, and transforms stop-color to stopColor", () => {
+      const content = fs.readFileSync(path.join(FIXTURES_DIR, "gradient-icon.svg"), "utf-8");
+      const result = convert(content, { componentName: "GradientIcon" });
+
+      expect(result).toContain("export const GradientIcon =");
+      expect(result).toContain("<defs>");
+      expect(result).toContain('<linearGradient id="paint0_linear" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">');
+      expect(result).toContain('<stop stopColor="#FF512F" />');
+      expect(result).toContain('<stop offset="1" stopColor="#DD2476" />');
+      expect(result).toContain('fill="url(#paint0_linear)"');
+      expect(result).not.toContain("stop-color=");
+      expect(result).not.toContain("gradient-units=");
+    });
+
+    it("figma-complex-shapes: correctly converts fill-opacity and stroke-opacity to camelCase JSX", () => {
+      const content = fs.readFileSync(path.join(FIXTURES_DIR, "figma-complex-shapes.svg"), "utf-8");
+      const result = convert(content, { componentName: "FigmaShapes" });
+
+      expect(result).toContain("export const FigmaShapes =");
+      expect(result).toContain('fillOpacity="0.9"');
+      expect(result).toContain('strokeOpacity="0.5"');
+      expect(result).not.toContain("fill-opacity=");
+      expect(result).not.toContain("stroke-opacity=");
+      expect(result).toContain('<circle className="fill-[#f3f4f6] stroke-[#e5e7eb] stroke-2" cx="16" cy="16" r="14" />');
+      expect(result).toContain('<path className="fill-[#10b981]" d="M12 10L20 16L12 22V10Z" fillOpacity="0.9" />');
+      expect(result).toContain('<circle className="fill-[#ef4444]" cx="24" cy="8" r="3" strokeOpacity="0.5" />');
+    });
+
+    it("malformed-unclosed: bails gracefully and returns empty string without throwing", () => {
+      const content = fs.readFileSync(path.join(FIXTURES_DIR, "malformed-unclosed.svg"), "utf-8");
+      expect(isConvertibleSvg(content)).toBe(false);
+      let res: string | undefined;
+      expect(() => {
+        res = convert(content);
+      }).not.toThrow();
+      expect(res).toBe("");
+    });
+
+    it("malformed-non-svg: fast pre-check rejects HTML div and returns empty string", () => {
+      const content = fs.readFileSync(path.join(FIXTURES_DIR, "malformed-non-svg.svg"), "utf-8");
+      expect(isConvertibleSvg(content)).toBe(false);
+      const res = convert(content);
+      expect(res).toBe("");
+    });
+
+    it("style-block-icon: preserves <style> tag content safely without breaking JSX expressions", () => {
+      const content = fs.readFileSync(path.join(FIXTURES_DIR, "style-block-icon.svg"), "utf-8");
+      expect(isConvertibleSvg(content)).toBe(true);
+      const result = convert(content, { componentName: "StyleBlockIcon" });
+
+      expect(result).toContain("export const StyleBlockIcon =");
+      expect(result).toContain("<style>{`.accent { fill: #3b82f6; stroke-width: 1.5px; }");
+      expect(result).toContain(".muted { fill: #9ca3af; }`}</style>");
+      expect(result).toContain('<circle className="accent" cx="12" cy="12" r="10" />');
+      expect(result).toContain('<path className="muted" d="M12 6v6l4 2" />');
+    });
+  });
 });
+

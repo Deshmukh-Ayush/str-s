@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <style>
+    .accent { fill: #3b82f6; stroke-width: 1.5px; }
+    .muted { fill: #9ca3af; }
+  </style>
+  <circle cx="12" cy="12" r="10" class="accent" />
+  <path d="M12 6v6l4 2" class="muted" />
+</svg>

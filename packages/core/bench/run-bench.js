@@ -10,15 +10,18 @@ import jsxPlugin from "@svgr/plugin-jsx";
 const require = createRequire(import.meta.url);
 const svgToJsx = require("svg-to-jsx");
 
-let htmlToJsxConverter = null;
-try {
-  const cliDir = path.dirname(require.resolve("svg-to-react-cli/package.json"));
-  const HTMLtoJSX = require(path.join(cliDir, "node_modules/htmltojsx"));
-  htmlToJsxConverter = new HTMLtoJSX({ createClass: false });
-} catch {
-  htmlToJsxConverter = {
-    convert: (s) => s.replace(/class=/g, "className="),
-  };
+// Genuine loading of svg-to-react-cli core pipeline (HTMLtoJSX + formatting + component generation)
+const cliPath = require.resolve("svg-to-react-cli");
+const cliReq = createRequire(cliPath);
+const HTMLtoJSX = cliReq("htmltojsx");
+const formatSVG = cliReq("./src/formatSVG");
+const generateComponent = cliReq("./src/generateComponent");
+const htmlToJsxConverter = new HTMLtoJSX({ createClass: false });
+
+function convertWithSvgToReactCli(svg) {
+  let out = htmlToJsxConverter.convert(svg);
+  out = formatSVG(out);
+  return generateComponent(out, "Icon");
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -36,9 +39,15 @@ const fixtures = fixtureFiles.map((f) => fs.readFileSync(path.join(FIXTURES_DIR,
 
 async function main() {
   console.log("Running STR benchmark suite against competitors...");
-  console.log(`Fixtures: ${fixtures.length} icon SVGs\n`);
+  console.log(`Fixtures: ${fixtures.length} icon SVGs`);
+  console.log("Warmup iterations are configured and excluded from reported results.\n");
 
-  const bench = new Bench({ time: 1000, iterations: 100 });
+  const bench = new Bench({
+    time: 1000,
+    iterations: 100,
+    warmupTime: 500,
+    warmupIterations: 10,
+  });
 
   bench
     .add("str-s (STR)", () => {
@@ -58,16 +67,16 @@ async function main() {
     })
     .add("svg-to-react-cli", () => {
       for (const svg of fixtures) {
-        htmlToJsxConverter?.convert(svg);
+        convertWithSvgToReactCli(svg);
       }
     });
 
   await bench.run();
 
-  console.log("\n=================== BENCHMARK RESULTS ===================");
+  console.log("\n=================== RAW TINYBENCH TABLE ===================");
   console.table(bench.table());
 
-  console.log("\nMarkdown Summary Table:");
+  console.log("\n=================== MARKDOWN SUMMARY ===================");
   console.log("| Tool | ops/sec (batch 5) | Latency (avg per icon) | Dependencies | Bundle Size (gzip) |");
   console.log("| :--- | :--- | :--- | :--- | :--- |");
   for (const task of bench.tasks) {
