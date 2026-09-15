@@ -1,0 +1,61 @@
+{
+  "name": "str-s",
+  "version": "0.1.0",
+  "description": "The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons.",
+  "keywords": [
+    "svg",
+    "react",
+    "tailwind",
+    "jsx",
+    "icon",
+    "converter",
+    "codegen",
+    "svg-to-jsx"
+  ],
+  "author": "STR Team",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "llms.txt",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "bench": "node bench/run-bench.js",
+    "bench:vitest": "vitest bench",
+    "size": "size-limit",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.2.0",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@types/node": "^22.13.9",
+    "size-limit": "^11.2.0",
+    "svg-to-jsx": "^1.0.4",
+    "svg-to-react-cli": "^1.5.0",
+    "tinybench": "^3.1.1",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.mjs",
+      "limit": "5 KB",
+      "gzip": true
+    }
+  ]
+}

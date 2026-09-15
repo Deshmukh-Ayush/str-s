@@ -1,0 +1,22 @@
+{
+  "name": "str-monorepo",
+  "private": true,
+  "description": "STR (str-s) — SVG to React + Tailwind, Everywhere",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "vitest run",
+    "bench": "pnpm --filter str-s bench",
+    "size": "pnpm --filter str-s size",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.2.0",
+    "@types/node": "^22.13.9",
+    "size-limit": "^11.2.0",
+    "tinybench": "^3.1.1",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  },
+  "packageManager": "pnpm@10.11.0"
+}

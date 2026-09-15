@@ -1,0 +1,100 @@
+{
+  "name": "str-vscode",
+  "displayName": "STR — SVG to React + Tailwind",
+  "description": "The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons in VS Code & Cursor.",
+  "type": "module",
+  "version": "0.1.0",
+  "publisher": "str-tools",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/str-tools/str-s"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "svg",
+    "react",
+    "tailwind",
+    "jsx",
+    "cursor",
+    "icon"
+  ],
+  "activationEvents": [
+    "onLanguage:typescriptreact",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:javascript"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "str.convertSelection",
+        "title": "STR: Convert Selection",
+        "category": "STR"
+      },
+      {
+        "command": "str.convertClipboard",
+        "title": "STR: Convert Clipboard",
+        "category": "STR"
+      }
+    ],
+    "configuration": {
+      "title": "STR (SVG to React)",
+      "properties": {
+        "str.autoConvertOnPaste": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically convert SVG to React component when pasting into JSX/TSX files."
+        },
+        "str.tailwindMapping": {
+          "type": "string",
+          "enum": ["strict", "loose", "off"],
+          "default": "loose",
+          "description": "Tailwind mapping strategy: strict (exact scale only), loose (arbitrary values allowed), or off."
+        },
+        "str.componentStyle": {
+          "type": "string",
+          "enum": ["arrow", "function"],
+          "default": "arrow",
+          "description": "Generated component syntax: arrow function or function declaration."
+        },
+        "str.typescript": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include TypeScript React.SVGProps types in generated component."
+        },
+        "str.componentName": {
+          "type": "string",
+          "default": "SvgComponent",
+          "description": "Default component name."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.js",
+    "typecheck": "tsc --noEmit",
+    "package:vsce": "vsce package",
+    "package:ovsx": "ovsx package",
+    "publish:vsce": "vsce publish",
+    "publish:ovsx": "ovsx publish"
+  },
+  "dependencies": {
+    "str-s": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^3.2.1",
+    "esbuild": "^0.25.0",
+    "ovsx": "^0.9.3",
+    "typescript": "^5.8.2"
+  }
+}

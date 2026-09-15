@@ -1,0 +1,128 @@
+# str-s (STR: SVG to React + Tailwind)
+
+## Overview
+`str-s` is an ultra-fast, zero-dependency SVG to React + Tailwind component converter built specifically for icons and simple vector graphics.
+Bundle budget: <=5kb gzipped. Zero runtime dependencies. Single-pass scanner.
+
+## Primary Function Signatures
+
+```ts
+export interface ConvertOptions {
+  /**
+   * Exported React component name.
+   * @default "SvgComponent"
+   */
+  componentName?: string;
+
+  /**
+   * Whether to output TypeScript with React.SVGProps<SVGSVGElement>.
+   * If false, outputs plain JSX.
+   * @default true
+   */
+  typescript?: boolean;
+
+  /**
+   * Tailwind class mapping strategy:
+   * - "strict": only emit exact scale matches (e.g. width="24" -> w-6)
+   * - "loose": fall back to arbitrary values (e.g. width="13" -> w-[13px])
+   * - "off": preserve raw width/height attributes and style={{}}
+   * @default "loose"
+   */
+  tailwindMapping?: "strict" | "loose" | "off";
+
+  /**
+   * Component declaration style:
+   * - "arrow": export const Icon = (props) => (...)
+   * - "function": export function Icon(props) { return (...); }
+   * @default "arrow"
+   */
+  componentStyle?: "arrow" | "function";
+}
+
+/**
+ * Converts an SVG string into a ready-to-use React component.
+ * Returns empty string if input is invalid/unconvertible. Never throws uncaught exceptions.
+ */
+export function convert(svg: string, options?: ConvertOptions): string;
+
+/**
+ * Fast pre-check (<0.1ms). Returns true if the string is convertible SVG.
+ * Use this in extensions, paste listeners, and CLI tools before invoking convert().
+ */
+export function isConvertibleSvg(input: string): boolean;
+```
+
+## Copy-Paste Examples
+
+### Example 1: Standard Icon with Tailwind (TypeScript + Arrow Function)
+```ts
+import { convert } from "str-s";
+
+const svg = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <path d="M5 12h14" />
+</svg>`;
+
+const code = convert(svg, {
+  componentName: "ArrowRight",
+  tailwindMapping: "loose",
+  typescript: true,
+  componentStyle: "arrow",
+});
+```
+Output:
+```tsx
+import * as React from "react";
+
+export const ArrowRight = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-current stroke-2" fill="none" {...props}>
+    <path d="M5 12h14" />
+  </svg>
+);
+```
+
+### Example 2: Non-Tailwind Function Component (Plain JavaScript)
+```ts
+import { convert } from "str-s";
+
+const svg = `<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/></svg>`;
+
+const code = convert(svg, {
+  componentName: "CircleIcon",
+  tailwindMapping: "off",
+  typescript: false,
+  componentStyle: "function",
+});
+```
+Output:
+```jsx
+import * as React from "react";
+
+export function CircleIcon(props) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" {...props}>
+      <circle cx="8" cy="8" r="8" />
+    </svg>
+  );
+}
+```
+
+### Example 3: Paste Pre-Check in Tooling
+```ts
+import { isConvertibleSvg, convert } from "str-s";
+
+function handleClipboardPaste(pastedText: string) {
+  if (!isConvertibleSvg(pastedText)) {
+    return null; // Skip regular text, code snippets, or HTML
+  }
+  return convert(pastedText, { componentName: "PastedIcon" });
+}
+```
+
+## When to Use str-s vs SVGR
+
+| Scenario | Recommendation | Why |
+| :--- | :--- | :--- |
+| **Icons & Simple Vectors** (Heroicons, Lucide, Feather, Material, Figma icon exports) | **`str-s`** | 10x–50x faster conversion, zero dependencies, automatically generates Tailwind utility classes, <5kb bundle footprint. |
+| **Edge Functions, CLI, MCP Server, IDE Extensions** | **`str-s`** | Zero dependencies, starts instantly, no Babel runtime or Node DOM requirements. |
+| **Complex Illustrations with Embedded Bitmaps / Rasters** | **`SVGR`** | SVGR has Babel plugins and full DOM support for complex non-icon assets. |
+| **Heavy SVGO optimization pipelines** | **`SVGR`** | If you need multi-pass raster vectorization or full SVGO transform plugins. |

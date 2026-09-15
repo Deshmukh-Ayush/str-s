@@ -1,0 +1,79 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "str-raycast",
+  "title": "STR — SVG to React",
+  "description": "The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons.",
+  "icon": "command-icon.png",
+  "author": "str-tools",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "convert-clipboard",
+      "title": "Convert SVG from Clipboard",
+      "description": "Reads SVG from clipboard and copies converted React + Tailwind component back to clipboard.",
+      "mode": "no-view"
+    },
+    {
+      "name": "convert-selection",
+      "title": "Convert SVG from Selected Text",
+      "description": "Converts selected SVG text from the frontmost application to a React component.",
+      "mode": "no-view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "componentName",
+      "title": "Component Name",
+      "description": "Default name for the converted React component",
+      "type": "textfield",
+      "required": false,
+      "default": "SvgComponent"
+    },
+    {
+      "name": "tailwindMapping",
+      "title": "Tailwind Mapping",
+      "description": "Tailwind class mapping mode",
+      "type": "dropdown",
+      "required": false,
+      "default": "loose",
+      "data": [
+        { "title": "Loose (arbitrary values permitted)", "value": "loose" },
+        { "title": "Strict (exact scale matches only)", "value": "strict" },
+        { "title": "Off (no Tailwind classes, raw/style)", "value": "off" }
+      ]
+    },
+    {
+      "name": "componentStyle",
+      "title": "Component Style",
+      "description": "Arrow function or function declaration",
+      "type": "dropdown",
+      "required": false,
+      "default": "arrow",
+      "data": [
+        { "title": "Arrow function", "value": "arrow" },
+        { "title": "Function declaration", "value": "function" }
+      ]
+    },
+    {
+      "name": "typescript",
+      "title": "TypeScript",
+      "description": "Include React.SVGProps TypeScript types",
+      "type": "checkbox",
+      "required": false,
+      "default": true,
+      "label": "Enable TypeScript definitions"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.93.0",
+    "str-s": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "typecheck": "tsc --noEmit"
+  }
+}
