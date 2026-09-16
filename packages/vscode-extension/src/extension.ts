@@ -80,6 +80,21 @@ export function activate(context: vscode.ExtensionContext) {
         }
       )
     );
+
+    // In Cursor, editor.pasteAs.enabled is false by default, which blocks all DocumentPasteEditProviders
+    const pasteAsConfig = vscode.workspace.getConfiguration("editor.pasteAs");
+    if (pasteAsConfig.get<boolean>("enabled") === false) {
+      vscode.window
+        .showInformationMessage(
+          "STR: Automatic SVG paste conversion is disabled because 'editor.pasteAs.enabled' is false (default in Cursor). Enable it to convert on paste?",
+          "Enable Now"
+        )
+        .then((selection) => {
+          if (selection === "Enable Now") {
+            pasteAsConfig.update("enabled", true, vscode.ConfigurationTarget.Global);
+          }
+        });
+    }
   }
 
   // Command: Convert Selection (Single undo step)
