@@ -136,7 +136,7 @@ function handleClipboardPaste(pastedText: string) {
 ## Documentation & AI Routes
 - **Interactive Documentation**: https://str-s.dev/docs (local `/docs`)
 - **Fumadocs LLM Route**: `/llms.txt` and `/llms-full.txt`
-- **GitHub Repository**: https://github.com/str-tools/str-s
+- **GitHub Repository**: https://github.com/Deshmukh-Ayush/str-s
 - **Creator**: [@everywhereayush](https://x.com/everywhereayush)
 
 

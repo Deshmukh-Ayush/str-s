@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/str-tools/str-s"
+    "url": "https://github.com/Deshmukh-Ayush/str-s"
   },
   "engines": {
     "vscode": "^1.80.0"

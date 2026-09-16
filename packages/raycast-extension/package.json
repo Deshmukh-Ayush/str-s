@@ -4,7 +4,7 @@
   "title": "STR — SVG to React",
   "description": "The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons.",
   "icon": "command-icon.png",
-  "author": "str-tools",
+  "author": "everywhereayush",
   "license": "MIT",
   "commands": [
     {

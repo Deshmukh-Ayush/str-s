@@ -53,7 +53,7 @@ export function LandingFooter() {
                 Benchmarks
               </Link>
               <a
-                href="https://github.com/str-tools/str-s"
+                href="https://github.com/Deshmukh-Ayush/str-s"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-fd-foreground transition-colors"
@@ -61,7 +61,7 @@ export function LandingFooter() {
                 GitHub
               </a>
               <a
-                href="https://www.npmjs.com/package/str-s"
+                href="https://www.npmjs.com/package/@everywhereayush/str-s"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-fd-foreground transition-colors"

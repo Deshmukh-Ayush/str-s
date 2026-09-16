@@ -21,4 +21,4 @@ For automatic paste conversion, make sure `editor.pasteAs.enabled` is enabled.
 ## Links
 
 - [STR documentation](https://str-s.dev)
-- [Source code](https://github.com/str-tools/str-s)
+- [Source code](https://github.com/Deshmukh-Ayush/str-s)

@@ -1,9 +1,9 @@
 # STR (str-s) — SVG to React + Tailwind, Everywhere
 
-[![CI](https://github.com/str-tools/str-s/actions/workflows/ci.yml/badge.svg)](https://github.com/str-tools/str-s/actions)
-[![npm version](https://img.shields.io/npm/v/str-s.svg)](https://www.npmjs.com/package/str-s)
-[![Bundle Size](https://img.shields.io/badge/bundle%20size-3.04%20kB%20gzip-brightgreen.svg)](https://bundlephobia.com/package/str-s)
-[![Dependencies](https://img.shields.io/badge/dependencies-0%20(zero)-blue.svg)](https://www.npmjs.com/package/str-s)
+[![CI](https://github.com/Deshmukh-Ayush/str-s/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshmukh-Ayush/str-s/actions)
+[![npm version](https://img.shields.io/npm/v/@everywhereayush/str-s.svg)](https://www.npmjs.com/package/@everywhereayush/str-s)
+[![Bundle Size](https://img.shields.io/badge/bundle%20size-3.04%20kB%20gzip-brightgreen.svg)](https://bundlephobia.com/package/@everywhereayush/str-s)
+[![Dependencies](https://img.shields.io/badge/dependencies-0%20(zero)-blue.svg)](https://www.npmjs.com/package/@everywhereayush/str-s)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Quick Start (Copy & Run):**
@@ -220,7 +220,7 @@ For AI assistants and agentic workflows, STR provides a dedicated, machine-reada
 
 ```bash
 # Clone the repository
-git clone https://github.com/str-tools/str-s.git
+git clone https://github.com/Deshmukh-Ayush/str-s.git
 cd str-s
 
 # Install dependencies

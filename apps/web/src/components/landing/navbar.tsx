@@ -19,7 +19,7 @@ export function LandingNavbar() {
             Benchmarks
           </a>
           <a
-            href="https://github.com/str-tools/str-s"
+            href="https://github.com/Deshmukh-Ayush/str-s"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub repository"
@@ -28,7 +28,7 @@ export function LandingNavbar() {
             <GithubIcon className="h-4 w-4 fill-current" aria-hidden="true" />
           </a>
           <a
-            href="https://www.npmjs.com/package/str-s"
+            href="https://www.npmjs.com/package/@everywhereayush/str-s"
             target="_blank"
             rel="noreferrer"
             className="rounded-md border border-fd-border bg-fd-secondary px-2.5 py-1 text-xs font-mono text-fd-foreground hover:bg-fd-accent transition-colors"

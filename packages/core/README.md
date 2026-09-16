@@ -6,7 +6,7 @@
 - **≤3.04 kB gzipped**
 - **~70x faster than SVGR**
 
-See full documentation and monorepo at [GitHub](https://github.com/str-tools/str-s).
+See full documentation and monorepo at [GitHub](https://github.com/Deshmukh-Ayush/str-s).
 
 ## Quick Start
 
