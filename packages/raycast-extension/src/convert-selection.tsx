@@ -1,3 +1,4 @@
+// Note: Extension code is tested with ray develop; store submission is pending macOS hardware testing.
 import { getSelectedText, Clipboard, showToast, Toast, getPreferenceValues } from "@raycast/api";
 import { convert, isConvertibleSvg, type ConvertOptions } from "@everywhereayush/str-s";
 

@@ -127,9 +127,16 @@ function handleClipboardPaste(pastedText: string) {
 | **Complex Illustrations with Embedded Bitmaps / Rasters** | **`SVGR`** | SVGR has Babel plugins and full DOM support for complex non-icon assets. |
 | **Heavy SVGO optimization pipelines** | **`SVGR`** | If you need multi-pass raster vectorization or full SVGO transform plugins. |
 
+## Ecosystem Surfaces & Status
+- **Core Library (`@everywhereayush/str-s`)**: Available on npm. Zero runtime dependencies.
+- **VS Code & Cursor Extension**: Available (`ext install everywhereayush.str-vscode`).
+- **Model Context Protocol (MCP) Server**: Available (`npx -y str-s-mcp`).
+- **Raycast Extension**: Coming soon. Implemented in `packages/raycast-extension` and verified with `ray develop`; Raycast Store submission is pending macOS hardware testing.
+
 ## Documentation & AI Routes
 - **Interactive Documentation**: https://str-s.dev/docs (local `/docs`)
 - **Fumadocs LLM Route**: `/llms.txt` and `/llms-full.txt`
 - **GitHub Repository**: https://github.com/str-tools/str-s
 - **Creator**: [@everywhereayush](https://x.com/everywhereayush)
+
 

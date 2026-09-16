@@ -154,18 +154,22 @@ pnpm --filter str-vscode publish:ovsx
 
 ---
 
-### 3. Raycast Extension (`packages/raycast-extension`)
+### 3. Raycast Extension (`packages/raycast-extension`) *(Coming Soon)*
 
 Convert SVGs directly from macOS menu bar or hotkey into your clipboard.
+
+> **Status**: Support is planned — local implementation tested via `ray develop`, store submission pending macOS hardware testing.
 
 #### Commands
 1. **Convert SVG from Clipboard**: Reads SVG from clipboard, runs `convert()`, copies the React component back, and alerts via toast.
 2. **Convert SVG from Selected Text**: Reads selected SVG from any active application window (or fallback clipboard) and replaces it with the React component.
 
-#### Build & Run
+#### Local Development
 ```bash
 cd packages/raycast-extension
 pnpm build
+# or run with ray develop
+ray develop
 ```
 
 ---

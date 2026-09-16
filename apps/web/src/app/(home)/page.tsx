@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/landing/container";
-import { LiveDemo } from "@/components/landing/live-demo";
+import { Playground } from "@/components/landing/playground";
 import { BenchmarksTable } from "@/components/landing/benchmarks-table";
 import { CopyableSnippet } from "@/components/landing/install-snippet";
 import { StrLogo } from "@/components/str-logo";
@@ -75,17 +75,17 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* 2. Live-ish Demo */}
+      {/* 2. Live Interactive Playground */}
       <section className="flex flex-col gap-4">
         <Container className="flex flex-col gap-2">
           <h2 className="text-xl font-semibold tracking-tight text-fd-foreground">
-            See the transformation
+            Live interactive playground
           </h2>
           <p className="text-sm text-fd-muted-foreground">
-            Paste raw icon SVGs from Figma, Lucide, Feather, or Tabler. Receive clean React components with auto-mapped Tailwind utility classes and forwarded props.
+            Paste raw icon SVGs from Figma, Lucide, Feather, or Tabler. Receive clean React components with auto-mapped Tailwind utility classes and forwarded props. Runs 100% in your browser with zero network requests.
           </p>
           <div className="pt-3">
-            <LiveDemo />
+            <Playground />
           </div>
         </Container>
       </section>
@@ -134,13 +134,13 @@ export default function HomePage() {
             <div className="rounded-lg border border-fd-border bg-fd-card p-4 flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <span className="font-medium text-sm text-fd-foreground flex items-center"><RaycastIcon className="size-4 mr-1" /> Raycast Extension</span>
-                <span className="font-mono text-[11px] text-fd-muted-foreground">macOS global command</span>
+                <span className="font-mono text-[11px] text-fd-muted-foreground">macOS global command • Coming soon</span>
               </div>
               <p className="text-xs text-fd-muted-foreground leading-relaxed">
                 Converts SVG from clipboard or frontmost window selection back into the clipboard with toast confirmation and native preferences.
               </p>
               <div className="pt-1">
-                <code className="text-[11px] font-mono text-fd-muted-foreground">Raycast Store: Convert SVG from Clipboard</code>
+                <span className="text-[11px] font-mono text-fd-muted-foreground">Raycast support is planned — testing is blocked on Mac hardware access.</span>
               </div>
             </div>
 
