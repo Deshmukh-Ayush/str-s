@@ -124,7 +124,7 @@ export default function HomePage() {
                 <span className="font-mono text-[11px] text-fd-muted-foreground">OpenVSX + Marketplace</span>
               </div>
               <p className="text-xs text-fd-muted-foreground leading-relaxed">
-                Intercepts SVG paste in .tsx and .jsx files with automatic conversion. Supports single undo step (Ctrl+Z restores raw SVG) and commands.
+                Intercepts SVG paste in .tsx and .jsx files with automatic conversion. Single undo step for commands, Paste As widget (Ctrl+.) for raw SVG, and native settings.
               </p>
               <div className="pt-1">
                 <code className="text-[11px] font-mono text-fd-muted-foreground">ext install everywhereayush.str-vscode</code>

@@ -11,7 +11,7 @@ The STR editor extension automatically converts pasted SVGs into clean React com
 
 - **Instant Paste Interception**: Uses standard `DocumentPasteEditProvider` to intercept SVG markup and convert it on the fly.
 - **Fast Pre-Check Bailout**: Evaluates `isConvertibleSvg()` in under 0.01 ms. Non-SVG text, code snippets, and plain text pastes are completely ignored and untouched.
-- **Single Undo Step**: All edits are bundled in one undo transaction. Pressing `Cmd+Z` or `Ctrl+Z` immediately reverts the converted component back to the raw SVG in exactly one step.
+- **Single Undo Step & Paste As Control**: All edits are bundled in one atomic transaction. Pressing `Cmd+Z` / `Ctrl+Z` on converted selections cleanly reverts back to the raw SVG in one step. When pasting, you can also press `Ctrl+.` / `Cmd+.` to toggle the VS Code Paste Widget and switch back to raw text.
 - **Compatible Everywhere**: Uses strictly standard VS Code APIs. Compatible with **VS Code**, **Cursor**, **Windsurf**, and **VSCodium**.
 
 ---
