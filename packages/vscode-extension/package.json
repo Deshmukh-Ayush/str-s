@@ -4,6 +4,7 @@
   "description": "The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons in VS Code & Cursor.",
   "version": "0.1.0",
   "publisher": "everywhereayush",
+  "icon": "icon.png",
   "license": "MIT",
   "repository": {
     "type": "git",
