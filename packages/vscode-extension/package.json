@@ -26,6 +26,7 @@
     "icon"
   ],
   "activationEvents": [
+    "onStartupFinished",
     "onLanguage:typescriptreact",
     "onLanguage:javascriptreact",
     "onLanguage:typescript",

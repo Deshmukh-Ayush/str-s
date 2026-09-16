@@ -76,6 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
         new SvgPasteEditProvider(),
         {
           providedPasteEditKinds: [SvgPasteEditProvider.kind],
+          pasteMimeTypes: ["text/plain"],
         }
       )
     );
