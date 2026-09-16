@@ -127,7 +127,7 @@ export default function HomePage() {
                 Intercepts SVG paste in .tsx and .jsx files with automatic conversion. Supports single undo step (Ctrl+Z restores raw SVG) and commands.
               </p>
               <div className="pt-1">
-                <code className="text-[11px] font-mono text-fd-muted-foreground">ext install str-tools.str-vscode</code>
+                <code className="text-[11px] font-mono text-fd-muted-foreground">ext install everywhereayush.str-vscode</code>
               </div>
             </div>
 

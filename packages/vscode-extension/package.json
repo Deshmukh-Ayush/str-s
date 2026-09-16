@@ -2,9 +2,8 @@
   "name": "str-vscode",
   "displayName": "STR — SVG to React + Tailwind",
   "description": "The smallest and fastest SVG to React + Tailwind converter, purpose-built for icons in VS Code & Cursor.",
-  "type": "module",
   "version": "0.1.0",
-  "publisher": "str-tools",
+  "publisher": "everywhereayush",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -46,6 +45,15 @@
         "category": "STR"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "str.convertSelection",
+          "group": "1_modification",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
     "configuration": {
       "title": "STR (SVG to React)",
       "properties": {
@@ -80,11 +88,11 @@
     }
   },
   "scripts": {
-    "build": "node esbuild.js",
+    "build": "node esbuild.mjs",
     "typecheck": "tsc --noEmit",
-    "package:vsce": "vsce package",
-    "package:ovsx": "ovsx package",
-    "publish:vsce": "vsce publish",
+    "package:vsce": "vsce package --no-dependencies",
+    "package:ovsx": "vsce package --no-dependencies",
+    "publish:vsce": "vsce publish --no-dependencies",
     "publish:ovsx": "ovsx publish"
   },
   "dependencies": {

@@ -1,5 +1,5 @@
 src/**
 tsconfig.json
-esbuild.js
+esbuild.mjs
 *.map
 .vscode/**
