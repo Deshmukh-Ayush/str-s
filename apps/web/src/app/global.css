@@ -2,6 +2,83 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
+/*
+ * STR theme — warm, near-monochrome palette with a single orange accent.
+ * Overrides the fumadocs tokens so the landing page and the docs share one look.
+ */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  --color-str-panel: var(--str-panel);
+  --color-str-surface: var(--str-surface);
+  --color-str-accent: var(--str-accent);
+  --color-str-success: var(--str-success);
+  --color-str-ink: var(--str-ink);
+  --color-str-ink-foreground: var(--str-ink-foreground);
+  --color-str-ink-muted: var(--str-ink-muted);
+}
+
+:root {
+  --str-panel: #eceae7;
+  --str-surface: #ffffff;
+  --str-accent: #e8531f;
+  --str-success: #22a33a;
+  --str-ink: #111111;
+  --str-ink-foreground: #f5f5f4;
+  --str-ink-muted: #8c8c8c;
+
+  --color-fd-background: #f4f3f1;
+  --color-fd-foreground: #1e1d1b;
+  --color-fd-muted: #eceae7;
+  --color-fd-muted-foreground: #6e6c68;
+  --color-fd-popover: #ffffff;
+  --color-fd-popover-foreground: #1e1d1b;
+  --color-fd-card: #faf9f7;
+  --color-fd-card-foreground: #1e1d1b;
+  --color-fd-border: #dad8d4;
+  --color-fd-primary: #1e1d1b;
+  --color-fd-primary-foreground: #f4f3f1;
+  --color-fd-secondary: #eceae7;
+  --color-fd-secondary-foreground: #1e1d1b;
+  --color-fd-accent: #e8e6e3;
+  --color-fd-accent-foreground: #1e1d1b;
+  --color-fd-ring: #a8a29e;
+}
+
+.dark {
+  --str-panel: #1c1b1a;
+  --str-surface: #232120;
+  --str-accent: #f0703e;
+  --str-success: #3ccf55;
+  --str-ink: #0b0a09;
+  --str-ink-foreground: #f5f5f4;
+  --str-ink-muted: #8a8680;
+
+  --color-fd-background: #141312;
+  --color-fd-foreground: #f5f5f4;
+  --color-fd-muted: #1f1d1b;
+  --color-fd-muted-foreground: #a8a29e;
+  --color-fd-popover: #1c1b1a;
+  --color-fd-popover-foreground: #f5f5f4;
+  --color-fd-card: #1c1b1a;
+  --color-fd-card-foreground: #f5f5f4;
+  --color-fd-border: #2e2b28;
+  --color-fd-primary: #f5f5f4;
+  --color-fd-primary-foreground: #1c1917;
+  --color-fd-secondary: #232120;
+  --color-fd-secondary-foreground: #f5f5f4;
+  --color-fd-accent: #2a2725;
+  --color-fd-accent-foreground: #f5f5f4;
+  --color-fd-ring: #78716c;
+}
+
+.dark #nd-sidebar {
+  --color-fd-muted: #1f1d1b;
+  --color-fd-secondary: #232120;
+  --color-fd-muted-foreground: #a8a29e;
+}
+
 html {
   scrollbar-gutter: stable;
 }
@@ -12,6 +89,77 @@ html > body[data-scroll-locked] {
 }
 
 ::selection {
-    background-color: oklch(0.703 0.16 239.5);
-    color: #f5f5f5;
+  background-color: color-mix(in oklab, var(--str-accent) 85%, transparent);
+  color: #ffffff;
+}
+
+/* Docs: serif display headings to match the landing page */
+#nd-page h1,
+.prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  font-size: 1.75em;
+  line-height: 1.15;
+}
+
+.prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  text-decoration-color: color-mix(in oklab, var(--str-accent) 60%, transparent);
+}
+
+/* Motion — always optional, content never depends on it */
+@keyframes str-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes str-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes str-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .str-reveal {
+      animation: str-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+
+  .str-marquee-track {
+    animation: str-marquee var(--str-marquee-duration, 40s) linear infinite;
+  }
+
+  .str-marquee-track[data-reverse] {
+    animation-direction: reverse;
+  }
+
+  .str-marquee:hover .str-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .str-orbit {
+    animation: str-spin 60s linear infinite;
+  }
+
+  .str-orbit-counter {
+    animation: str-spin 60s linear infinite reverse;
+  }
 }
