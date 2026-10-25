@@ -3,7 +3,7 @@
   "version": "0.0.28",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "pnpm --filter @everywhereayush/str-s build && next build",
     "dev": "next dev",
     "start": "next start",
     "types:check": "next typegen && tsc --noEmit",
